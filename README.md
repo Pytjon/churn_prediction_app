@@ -66,3 +66,12 @@ IsActiveMember — 0 or 1
 
 EstimatedSalary
 ```
+
+🧠 Model Info
+```
+MLP: Feedforward neural network trained on processed customer data
+
+LSTM: Single-timestep recurrent model that accepts the same feature space
+
+Preprocessing: Includes label encoding and feature scaling, saved in preprocessing/preprocessor.pkl
+```
