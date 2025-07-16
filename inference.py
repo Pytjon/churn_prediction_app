@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def collect_user_input():
-    import streamlit as st
+    
     data = {
         "CreditScore": st.number_input("Credit Score", 300, 900, step=1),
         "Geography": st.selectbox("Geography", ["France", "Spain", "Germany"]),
@@ -21,7 +21,7 @@ def collect_user_input():
 
 
 def collect_user_input_or_file():
-    import streamlit as st
+    
     uploaded_file = st.file_uploader("Upload CSV file (optional)", type=["csv"])
 
     if uploaded_file:
@@ -47,3 +47,11 @@ def predict_with_lstm(df, preprocessor, model):
     X_lstm = X.reshape((X.shape[0], 1, X.shape[1]))
     probs = model.predict(X_lstm).flatten()
     labels = ["Likely to Churn" if p >= 0.5 else "Not Likely" for p in probs]()
+
+def predict_with_both(df, preprocessor, mlp_model, lstm_model):
+    prob_mlp, _ = predict_with_mlp(df, preprocessor, mlp_model)
+    prob_lstm, _ = predict_with_lstm(df, preprocessor, lstm_model)
+    avg_prob = (prob_mlp + prob_lstm) / 2
+    label = "Likely to Churn" if avg_prob >= 0.5 else "Not Likely"
+    return avg_prob, label
+    
