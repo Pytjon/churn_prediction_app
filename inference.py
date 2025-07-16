@@ -47,6 +47,8 @@ def predict_with_lstm(df, preprocessor, model):
     X_lstm = X.reshape((X.shape[0], 1, X.shape[1]))
     probs = model.predict(X_lstm).flatten()
     labels = ["Likely to Churn" if p >= 0.5 else "Not Likely" for p in probs]()
+    return probs, labels
+
 
 def predict_with_both(df, preprocessor, mlp_model, lstm_model):
     prob_mlp, _ = predict_with_mlp(df, preprocessor, mlp_model)
@@ -54,4 +56,3 @@ def predict_with_both(df, preprocessor, mlp_model, lstm_model):
     avg_prob = (prob_mlp + prob_lstm) / 2
     label = "Likely to Churn" if avg_prob >= 0.5 else "Not Likely"
     return avg_prob, label
-    
