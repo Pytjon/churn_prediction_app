@@ -27,7 +27,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-
+```
 📂 File Structure
 .
 ├── app.py
@@ -39,8 +39,9 @@ streamlit run app.py
 ├── preprocessing/
 │   └── preprocessor.pkl
 └── README.md
+```
 
-
+```
 📈 Input Features
 The app expects the following customer features:
 
@@ -63,3 +64,4 @@ HasCrCard — 0 or 1
 IsActiveMember — 0 or 1
 
 EstimatedSalary
+```
