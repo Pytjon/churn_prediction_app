@@ -27,8 +27,8 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-```
 📂 File Structure
+```
 .
 ├── app.py
 ├── inference.py
@@ -41,8 +41,9 @@ streamlit run app.py
 └── README.md
 ```
 
-```
 📈 Input Features
+```
+
 The app expects the following customer features:
 
 CreditScore
