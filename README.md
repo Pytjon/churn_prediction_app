@@ -25,6 +25,8 @@ git clone https://github.com/your-username/churn_prediction_app.git
 cd churn_prediction_app
 pip install -r requirements.txt
 streamlit run app.py
+```
+
 
 📂 File Structure
 .
