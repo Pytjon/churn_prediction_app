@@ -10,9 +10,9 @@ from inference import (
 
 @st.cache_resource
 def load_assets():
-    preprocessor = joblib.load("preprocessing/preprocessor.pkl")
-    mlp_model = load_model("models/mlp_model.keras")
-    lstm_model = load_model("models/lstm_model.keras")
+    preprocessor = joblib.load("preprocessing/preprocessing_pipeline.pkl")
+    mlp_model = load_model("models/mlp.keras")
+    lstm_model = load_model("models/lstm.keras")
     return preprocessor, mlp_model, lstm_model
 
 preprocessor, mlp_model, lstm_model = load_assets()

@@ -1,5 +1,5 @@
 import pandas as pd
-import joblib
+import numpy as np
 import streamlit as st
 
 
@@ -26,6 +26,7 @@ def collect_user_input_or_file():
 
     if uploaded_file:
         df = pd.read_csv(uploaded_file)
+        df = df.drop(columns = ['RowNumber', 'CustomerId', 'Surname', 'Exited'], errors='ignore')
         st.write("Preview of uploaded data:")
         st.dataframe(df.head())
         return df, True
@@ -44,9 +45,9 @@ def predict_with_mlp(df, preprocessor, model):
 
 def predict_with_lstm(df, preprocessor, model):
     X = preprocessor.transform(df)
-    X_lstm = X.reshape((X.shape[0], 1, X.shape[1]))
+    X_lstm = np.expand_dims(X, axis = 1)
     probs = model.predict(X_lstm).flatten()
-    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely" for p in probs]()
+    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely" for p in probs]
     return probs, labels
 
 
@@ -54,5 +55,6 @@ def predict_with_both(df, preprocessor, mlp_model, lstm_model):
     prob_mlp, _ = predict_with_mlp(df, preprocessor, mlp_model)
     prob_lstm, _ = predict_with_lstm(df, preprocessor, lstm_model)
     avg_prob = (prob_mlp + prob_lstm) / 2
-    label = "Likely to Churn" if avg_prob >= 0.5 else "Not Likely"
-    return avg_prob, label
+    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely" for p in avg_prob]
+    return avg_prob, labels
+
