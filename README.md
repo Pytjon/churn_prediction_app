@@ -21,7 +21,7 @@ A Streamlit web app that uses trained **MLP** and **LSTM** models to predict cus
 ## 🛠️ How to Run Locally
 
 ```bash
-git clone https://github.com/your-username/churn_prediction_app.git
+git clone https://github.com/DurojaiyeAbisoye/churn_prediction_app.git
 cd churn_prediction_app
 pip install -r requirements.txt
 streamlit run app.py
