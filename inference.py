@@ -39,7 +39,7 @@ def collect_user_input_or_file():
 def predict_with_mlp(df, preprocessor, model):
     X = preprocessor.transform(df)
     probs = model.predict(X).flatten()
-    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely" for p in probs]
+    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely to churn" for p in probs]
     return probs, labels
 
 
@@ -47,7 +47,7 @@ def predict_with_lstm(df, preprocessor, model):
     X = preprocessor.transform(df)
     X_lstm = np.expand_dims(X, axis = 1)
     probs = model.predict(X_lstm).flatten()
-    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely" for p in probs]
+    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely to churn" for p in probs]
     return probs, labels
 
 
@@ -55,6 +55,6 @@ def predict_with_both(df, preprocessor, mlp_model, lstm_model):
     prob_mlp, _ = predict_with_mlp(df, preprocessor, mlp_model)
     prob_lstm, _ = predict_with_lstm(df, preprocessor, lstm_model)
     avg_prob = (prob_mlp + prob_lstm) / 2
-    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely" for p in avg_prob]
+    labels = ["Likely to Churn" if p >= 0.5 else "Not Likely to churn" for p in avg_prob]
     return avg_prob, labels
 
